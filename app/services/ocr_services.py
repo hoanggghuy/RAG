@@ -45,6 +45,6 @@ if __name__ == '__main__':
     # for page in output:
     #     print(f"\n--- Page {page['page']} ---\n{page['text']}")
     json_str = json.dumps(output, ensure_ascii=False, indent=4)
-    with open("../../data/json/output.json", "w", encoding="utf-8") as f:
+    with open("../../data/json/output2.json", "w", encoding="utf-8") as f:
         f.write(json_str)
     print(json_str)
