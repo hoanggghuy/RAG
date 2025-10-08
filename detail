@@ -1,0 +1,15 @@
+app/main.py: entrypoint chính, chạy FastAPI.
+
+app/services/: chứa logic chính (OCR, chunk, embedding, search).
+
+app/routers/: định nghĩa các API endpoint (ingest, query, health check).
+
+app/db/: chỗ kết nối tới MongoDB và vector DB.
+
+app/models/: schema định nghĩa data (MongoDB document, API response).
+
+data/: chứa input/output trong giai đoạn phát triển (sau này có thể bỏ khi lên production).
+
+scripts/: tiện ích nhỏ chạy độc lập (test OCR, ingest batch).
+
+tests/: unit test để check code chạy đúng.
