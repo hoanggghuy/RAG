@@ -30,7 +30,6 @@ def process_embedding(file_path):
         )
     return embedding
 def embedding_query(query:str):
-    embedded_query = []
     embedded_query = model.encode(query).tolist()
     return embedded_query
 def main():

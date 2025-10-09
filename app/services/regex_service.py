@@ -12,7 +12,7 @@ SUBSCRIPT_MAP = {
 }
 
 EXTRA_MAP = {
-    ord("º"): "o",   # hoặc "0" tùy ngữ cảnh
+    ord("º"): "o",
     ord("ª"): "a",
     ord("ð"): "d",
 }
@@ -20,8 +20,9 @@ TRANSLATION_TABLE = {**SUPERSCRIPT_MAP, **SUBSCRIPT_MAP, **EXTRA_MAP}
 def normalize(text:str)->str:
     return text.translate(TRANSLATION_TABLE)
 def Regex(text):
-    text = re.sub("\\n", " ",text)
-    text = text.replace("\\u003C", "<").replace("\\u003E", ">").replace("\\u0026", "&").replace("[-]", " ")
+    text = re.sub("\\n+.", " ",normalize(text))
+    text = re.sub('—', "",text)
+    text = text.replace("\\u003C", "<").replace("\\u003E", ">").replace("\\u0026", "&").replace("[-]", " ").replace("uuDuongThanCong: com ttps://fb.com/tailieudientucntt", " ")
     return text
 
 
