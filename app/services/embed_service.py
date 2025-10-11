@@ -3,7 +3,7 @@ import os
 import json
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
-inp_dr = r"C:\Users\ADMIN\Desktop\DATK1\data\json"
+inp_dr = r"C:\Users\ADMIN\Desktop\DATK1\data\chunked_json"
 out_dr = r"C:\Users\ADMIN\Desktop\DATK1\data\embedding"
 
 os.makedirs(out_dr, exist_ok=True)
@@ -18,13 +18,13 @@ def process_embedding(file_path):
         raise TypeError("Invalid data type")
     embedding = []
     for item in texts:
-        text = item["text"]
+        text = item["chunk"]
         page =item.get("page", None)
         embed = model.encode(text).tolist()
         embedding.append(
             {
                 "page": page,
-                "text": text,
+                "chunk": text,
                 "embed": embed,
             }
         )

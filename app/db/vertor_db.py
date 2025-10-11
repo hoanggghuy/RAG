@@ -34,7 +34,7 @@ def insert_embedding(qdrant_client: QdrantClient,embeddings, collection_name=Col
                 vector=list(item["embed"]),
                 payload={
                     "page": item.get("page"),
-                    "text": item.get("text"),
+                    "text": item.get("chunk"),
                 }
             )
         )

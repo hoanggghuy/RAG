@@ -29,5 +29,5 @@ def process_chunk(file_path: str, output_path: str):
 
 if __name__ == "__main__":
     a = r"C:\Users\ADMIN\Desktop\DATK1\data\json\output4.json"
-    b= r"C:\Users\ADMIN\Desktop\DATK1\data\chunked_json.json"
+    b= r"C:\Users\ADMIN\Desktop\DATK1\data\chunked_json\output4.json"
     process_chunk(a, b)
