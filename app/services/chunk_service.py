@@ -15,7 +15,13 @@ def process_chunk(file_path: str, output_path: str):
                 "page" : page["page_number"],
                 "content" : page["content"],
             })
-    splitter = RecursiveCharacterTextSplitter(chunk_size=256, chunk_overlap=100)
+    if isinstance(data, list) :
+        for i in range(len(data)):
+            texts.append({
+                "page" : data[i]["metadata"]["source"],
+                "content" : data[i]["page_content"],
+            })
+    splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
     chunks = []
     for item in texts:
         content = item["content"]
@@ -28,6 +34,6 @@ def process_chunk(file_path: str, output_path: str):
         json.dump(chunks, f,ensure_ascii=False,indent=4)
 
 if __name__ == "__main__":
-    a = r"C:\Users\ADMIN\Desktop\DATK1\data\json\output4.json"
-    b= r"C:\Users\ADMIN\Desktop\DATK1\data\chunked_json\output4.json"
+    a = r"../../data/data_crawl/Crawl_Data.json"
+    b= r"C:\Users\ADMIN\Desktop\DATK1\data\chunked_json\output=5.json"
     process_chunk(a, b)
