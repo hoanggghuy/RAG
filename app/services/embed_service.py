@@ -1,31 +1,31 @@
 from sentence_transformers import SentenceTransformer
 import os
 import json
+from pathlib import Path
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
 inp_dr = r"C:\Users\ADMIN\Desktop\DATK1\data\chunked_json"
-out_dr = r"C:\Users\ADMIN\Desktop\DATK1\data\embedding"
+out_dr = r"C:\Users\ADMIN\Desktop\DATK1\data\Data_to_db"
 
 os.makedirs(out_dr, exist_ok=True)
 def process_embedding(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    if isinstance(data, dict) and "text" in data:
-        texts = data["text"]
-    elif isinstance(data, list):
-        texts = data
-    else:
-        raise TypeError("Invalid data type")
+        texts = json.load(f)
+    # if isinstance(data, dict) and "page_content" in data:
+    #     texts = data["page_content"]
+    # elif isinstance(data, list):
+    #     texts = data
+    # else:
+    #     raise TypeError("Invalid data type")
     embedding = []
     for item in texts:
-        text = item["chunk"]
-        page =item.get("page", None)
+        text = item["page_content"]
         embed = model.encode(text).tolist()
         embedding.append(
             {
-                "page": page,
-                "chunk": text,
-                "embed": embed,
+                "metadata" : item["metadata"],
+                "page_content" : item["page_content"],
+                "embedding" : embed,
             }
         )
     return embedding

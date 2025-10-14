@@ -19,7 +19,7 @@ def search_qdrant(query:str, top_k: int =3):
     for hit in hits.points:
         results.append({
             "score" : hit.score,
-            "text" : hit.payload.get("Context") if "Context" in hit.payload else None,
+            "text" : hit.payload.get("page_content") if "page_content" in hit.payload else None,
         }
         )
     pairs =[]
