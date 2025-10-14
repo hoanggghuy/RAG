@@ -17,8 +17,7 @@ def search_qdrant(query:str, top_k: int =3):
     for hit in hits.points:
         results.append({
             "score" : hit.score,
-            "page" : hit.payload.get("page") if "page" in hit.payload else None,
-            "text" : hit.payload.get("text") if "text" in hit.payload else None,
+            "text" : hit.payload.get("Context") if "Context" in hit.payload else None,
         }
         )
     return results

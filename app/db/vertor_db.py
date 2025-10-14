@@ -31,10 +31,9 @@ def insert_embedding(qdrant_client: QdrantClient,embeddings, collection_name=Col
         points.append(
             models.PointStruct(
                 id=item.get("id", idx),
-                vector=list(item["embed"]),
+                vector=list(item["Embedding"]),
                 payload={
-                    "page": item.get("page"),
-                    "text": item.get("chunk"),
+                    "Context": item.get("Context"),
                 }
             )
         )
@@ -48,6 +47,5 @@ def insert_embedding(qdrant_client: QdrantClient,embeddings, collection_name=Col
 
 if __name__ == '__main__':
     client = QdrantClient(host=settings.QDRANT_HOST, port=settings.QDRANT_PORT)
-    init_collection(client)
     embedding = load_embedding()
     insert_embedding(client,embedding)
