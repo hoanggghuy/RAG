@@ -33,6 +33,7 @@ class SemanticRouter():
         [0.6,   0.8,   0],   
         [0.38,  0.92,  0]     
         ]
+        axit = 1: chuan hoa theo hang
         """
     def get_routes(self):
         return self.routes
