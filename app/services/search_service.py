@@ -30,3 +30,10 @@ def search_qdrant(query:str, top_k: int =3):
         results[i]["new_score"] = float(new_scores[i])
     results.sort(key=lambda x: x['new_score'], reverse=True)
     return results
+
+if __name__ == "__main__":
+    docs = search_qdrant(query="Camera thì sao", top_k=3)
+    information = ""
+    for doc in docs:
+        information += doc["text"].strip()
+    print(information)
