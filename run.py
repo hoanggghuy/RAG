@@ -15,14 +15,14 @@ load_dotenv()
 
 def main():
     query = input("Enter query: ")
-    llms = llm.CallAPIOpenAI(model_name="gpt-5-mini", api_key=os.getenv("API_KEY"))
+    llms = llm.CallAPIOpenAI(model_name="gpt-5-nano", api_key=os.getenv("API_KEY"))
     reflec = reflection.Reflection(llm= llms)
-    reflected_query = reflec(data,query=query)
     product_route = Route(name="product", sample=productsSample)
     chitchat_route = Route(name="chitchat", sample=chitchatSample)
     router =SemanticRouter(model,routes=[product_route,chitchat_route])
-    score, router_name = router.guide(reflected_query)
+    score, router_name = router.guide(query)
     if router_name == "product":
+        reflected_query = reflec(data, query=query)
         docs = search_service.search_qdrant(query=reflected_query, top_k=3)
         source_information = ""
         for doc in docs:
@@ -34,19 +34,19 @@ def main():
             "content": combined_information
         })
         response = llms.generate_content(data)
+        print(reflected_query)
+        print("-----------------------------")
     elif router_name == "chitchat":
         query_chitchat = [{
             "role": "user",
             "content": query
         }]
-        for data_chitchat in query_chitchat:
-            data.append(data_chitchat)
         response = llms.generate_content(query_chitchat)
     print(response)
     print("-----------------------------")
-    print(reflected_query)
-    print("-----------------------------")
     print(data)
+    print("-----------------------------")
+    print(router_name)
 
 
 if __name__ == "__main__":

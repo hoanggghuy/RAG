@@ -22,13 +22,13 @@ def search_qdrant(query:str, top_k: int =3):
             "text" : hit.payload.get("page_content") if "page_content" in hit.payload else None,
         }
         )
-    pairs =[]
-    for result in results:
-        pairs.append([query,result["text"]])
-    new_scores = cross_encoder.predict(pairs)
-    for i in range(len(results)):
-        results[i]["new_score"] = float(new_scores[i])
-    results.sort(key=lambda x: x['new_score'], reverse=True)
+    # pairs =[]
+    # for result in results:
+    #     pairs.append([query,result["text"]])
+    # new_scores = cross_encoder.predict(pairs)
+    # for i in range(len(results)):
+    #     results[i]["new_score"] = float(new_scores[i])
+    # results.sort(key=lambda x: x['new_score'], reverse=True)
     return results
 
 if __name__ == "__main__":

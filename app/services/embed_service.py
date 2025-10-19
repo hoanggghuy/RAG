@@ -2,7 +2,7 @@ from sentence_transformers import SentenceTransformer
 import os
 import json
 from pathlib import Path
-model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+model = SentenceTransformer('Qwen/Qwen3-Embedding-0.6B',trust_remote_code=True)
 
 inp_dr = r"C:\Users\ADMIN\Desktop\DATK1\data\chunked_json"
 out_dr = r"C:\Users\ADMIN\Desktop\DATK1\data\Data_to_db"

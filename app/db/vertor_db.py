@@ -9,7 +9,7 @@ Embedding_Dir = settings.EMBEDDING_DIR
 
 client = QdrantClient(host=settings.QDRANT_HOST, port=settings.QDRANT_PORT)
 
-def init_collection(qdrant_client: QdrantClient,vector_size =384):
+def init_collection(qdrant_client: QdrantClient,vector_size =1024):
     qdrant_client.create_collection(
         collection_name=Collection_Name,
         vectors_config=models.VectorParams(
