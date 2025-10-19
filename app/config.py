@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     QDRANT_PORT: int
     COLLECTION_NAME: str
     EMBEDDING_DIR: str
+    API_KEY: str
 
     class Config:
         env_file = r"C:\Users\ADMIN\Desktop\DATK1\.env"

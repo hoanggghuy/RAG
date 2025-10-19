@@ -31,10 +31,12 @@ def insert_embedding(qdrant_client: QdrantClient,embeddings, collection_name=Col
         points.append(
             models.PointStruct(
                 id=item.get("id", idx),
-                vector=list(item["embed"]),
+                vector=list(item["embedding"]),
                 payload={
-                    "page": item.get("page"),
-                    "text": item.get("chunk"),
+                    "product_name": item["metadata"]["product_name"],
+                    "source_url": item["metadata"]["source_url"],
+                    "category": item["metadata"]["category"],
+                    "page_content": item.get("page_content"),
                 }
             )
         )
